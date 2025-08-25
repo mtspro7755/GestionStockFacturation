@@ -8,7 +8,7 @@ import sn.edu.ugb.ipsl.ing2.service.ClientService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/api/clients")
 public class ClientController {
 
     @Autowired
@@ -27,6 +27,8 @@ public class ClientController {
             return Optional.empty();
         }
     }
+
+
 
     @PostMapping("/create")
     public Client saveClient(@RequestBody Client client){

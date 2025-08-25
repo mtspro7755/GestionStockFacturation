@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/magasins")
+@RequestMapping("/api/magasins")
 public class MagasinController {
 
     @Autowired
@@ -54,7 +54,7 @@ public class MagasinController {
     }
 
     // Lister les commandes d'un magasin spécifique
-    @GetMapping("/{id}/commandes")
+    @GetMapping("/get-allcommandes-by-id-magasin/{id}")
     public ResponseEntity<List<Commande>> getCommandesByMagasinId(@PathVariable int id) {
         List<Commande> commandes = magasinService.findCommandesByMagasinId(id);
         return ResponseEntity.ok(commandes);

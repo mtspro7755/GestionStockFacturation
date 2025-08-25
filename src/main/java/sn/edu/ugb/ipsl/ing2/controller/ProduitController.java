@@ -8,7 +8,7 @@ import sn.edu.ugb.ipsl.ing2.service.ProduitService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/produits")
+@RequestMapping("/api/produits")
 public class ProduitController {
 
     @Autowired

@@ -8,7 +8,7 @@ import sn.edu.ugb.ipsl.ing2.service.ArticleCommandeService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/article-commandes")
+@RequestMapping("/api/article-commandes")
 public class ArticleCommandeController {
 
     @Autowired

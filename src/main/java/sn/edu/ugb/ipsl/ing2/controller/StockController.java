@@ -9,7 +9,7 @@ import sn.edu.ugb.ipsl.ing2.service.StockService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/stocks")
+@RequestMapping("/api/stocks")
 public class StockController {
 
     @Autowired

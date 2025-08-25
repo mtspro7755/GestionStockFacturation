@@ -8,7 +8,7 @@ import sn.edu.ugb.ipsl.ing2.service.EmployeService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/employes")
+@RequestMapping("/api/employes")
 public class EmployeController {
 
     @Autowired

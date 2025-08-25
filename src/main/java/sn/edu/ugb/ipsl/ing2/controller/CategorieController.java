@@ -8,7 +8,7 @@ import sn.edu.ugb.ipsl.ing2.service.CategorieService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 public class CategorieController {
 
 
