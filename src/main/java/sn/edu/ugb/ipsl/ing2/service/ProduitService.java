@@ -30,4 +30,9 @@ public class ProduitService {
     public Produit saveProduit(Produit produit) {
         return produitRepository.save(produit);
     }
+
+    public Produit updateProduit(int id, Produit produit) {
+        produit.setId(id);
+        return produitRepository.save(produit);
+    }
 }

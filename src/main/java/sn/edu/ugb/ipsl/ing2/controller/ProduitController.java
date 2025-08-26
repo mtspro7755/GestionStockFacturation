@@ -1,6 +1,7 @@
 package sn.edu.ugb.ipsl.ing2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.edu.ugb.ipsl.ing2.entity.Produit;
 import sn.edu.ugb.ipsl.ing2.service.ProduitService;
@@ -29,13 +30,15 @@ public class ProduitController {
     }
 
     @PostMapping("/create")
-    public Produit saveProduit(@RequestBody Produit produit){
-        return produitService.saveProduit(produit);
+    public ResponseEntity<Produit> saveProduit(@RequestBody Produit produit){
+        Produit savedProduit=produitService.saveProduit(produit);
+        return ResponseEntity.ok().body(savedProduit);
     }
 
-    @PutMapping("/update")
-    public Produit updateProduit(@RequestBody Produit produit){
-        return produitService.saveProduit(produit);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Produit> updateProduit(@PathVariable int id, @RequestBody Produit produit){
+        Produit updatedProduit=produitService.updateProduit(id,produit);
+        return ResponseEntity.ok(updatedProduit);
     }
 
     @DeleteMapping("/delete/{id}")

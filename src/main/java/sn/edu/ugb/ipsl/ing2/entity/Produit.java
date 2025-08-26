@@ -31,8 +31,6 @@ public class Produit {
     @JoinColumn(name = "marque_id", nullable = false)
     private Marque marque;
 
-    //@OneToMany(mappedBy = "produit")
-    //private List<Stock> stocks;
 
 
     public Produit(Integer id, String nom, Integer anneeModel, Integer prixDepart, Categorie categorie, Marque marque) {
@@ -45,10 +43,5 @@ public class Produit {
     }
 
     public Produit() {
-
-    }
-
-
-    public Produit(int i, String produitA, int i1, int i2, Categorie categorie, Marque marque) {
     }
 }
