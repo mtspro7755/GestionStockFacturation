@@ -27,8 +27,8 @@ public class CategorieService {
         categorieRepository.deleteById(id);
     }
 
-    public Categorie saveCategorie(Categorie ec){
-        return categorieRepository.save(ec);
+    public Categorie saveCategorie(Categorie categorie){
+        return categorieRepository.save(categorie);
     }
 
 
