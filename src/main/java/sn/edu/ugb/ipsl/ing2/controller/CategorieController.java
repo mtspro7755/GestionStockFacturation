@@ -1,6 +1,7 @@
 package sn.edu.ugb.ipsl.ing2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.edu.ugb.ipsl.ing2.entity.Categorie;
 import sn.edu.ugb.ipsl.ing2.service.CategorieService;
@@ -35,9 +36,10 @@ public class CategorieController {
         return categorieService.saveCategorie(categorie);
     }
 
-    @PutMapping("/update")
-    public Categorie updateCategorie(@RequestBody Categorie categorie){
-        return categorieService.saveCategorie(categorie);
+    @PutMapping("/{id}")
+    public ResponseEntity<Categorie> updateCategorie(@PathVariable int id, @RequestBody Categorie categorie){
+        Categorie updateCategorie=categorieService.updateCategorie(id,categorie);
+        return ResponseEntity.ok(updateCategorie);
     }
 
     @DeleteMapping("/delete/{id}")

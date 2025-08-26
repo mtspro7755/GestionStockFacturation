@@ -31,6 +31,11 @@ public class CategorieService {
         return categorieRepository.save(categorie);
     }
 
+    public Categorie updateCategorie(int id, Categorie categorie){
+        categorie.setId(id);
+        return categorieRepository.save(categorie);
+    }
+
 
 
 }
