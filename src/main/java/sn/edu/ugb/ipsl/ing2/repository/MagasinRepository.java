@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface MagasinRepository extends JpaRepository<Magasin, Integer> {
 
-    // Cette méthode utilise 'id' comme propriété pour chercher les commandes
-    List<Commande> findCommandesById(Integer id);
 }

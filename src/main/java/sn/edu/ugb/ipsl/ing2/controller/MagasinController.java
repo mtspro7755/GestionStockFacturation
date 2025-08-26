@@ -53,10 +53,5 @@ public class MagasinController {
         return magasin.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Lister les commandes d'un magasin spécifique
-    @GetMapping("/get-allcommandes-by-id-magasin/{id}")
-    public ResponseEntity<List<Commande>> getCommandesByMagasinId(@PathVariable int id) {
-        List<Commande> commandes = magasinService.findCommandesByMagasinId(id);
-        return ResponseEntity.ok(commandes);
-    }
+
 }

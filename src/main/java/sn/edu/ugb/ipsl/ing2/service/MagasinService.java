@@ -41,8 +41,4 @@ public class MagasinService {
         return magasinRepository.findById(id);
     }
 
-    // Lister les commandes d'un magasin spécifique
-    public List<Commande> findCommandesByMagasinId(int id) {
-        return magasinRepository.findCommandesById(id);
-    }
 }
