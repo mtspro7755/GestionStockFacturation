@@ -23,13 +23,6 @@ public class Marque {
 
     private String description;
 
-    public List<Produit> getProduits() {
-        return List.of();
-    }
-
-    public List<Categorie> getCategories() {
-        return List.of();
-    }
 
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "marque")
     //private List<Produit> produits;

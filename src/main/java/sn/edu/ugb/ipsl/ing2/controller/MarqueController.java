@@ -28,49 +28,31 @@ public class MarqueController {
 
     // Ajouter une nouvelle marque
     @PostMapping
-    public ResponseEntity<String> saveMarque(@RequestBody Marque marque) {
-        if (marque.getNom() == null || marque.getDescription() == null) {
-            return ResponseEntity.badRequest().body("Le nom et la description de la marque sont requis.");
-        }
-        marqueService.saveMarque(marque);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Marque ajoutée avec succès.");
+    public ResponseEntity<Marque> saveMarque(@RequestBody Marque marque) {
+        Marque marquesaved= marqueService.saveMarque(marque);
+        return ResponseEntity.status(HttpStatus.CREATED).body(marquesaved);
     }
 
     // Modifier une marque existante
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateMarque(@PathVariable Long id, @RequestBody Marque marque) {
-        Optional<Marque> existingMarque = marqueService.getMarque(id);
-        if (existingMarque.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Marque non trouvée.");
-        }
-        marque.setId(Math.toIntExact(id));
-        marqueService.saveMarque(marque);
-        return ResponseEntity.ok("Marque mise à jour avec succès.");
+    public ResponseEntity<Marque> updateMarque(@PathVariable int id, @RequestBody Marque marque) {
+        Marque update= marqueService.updateMarque(id,marque);
+        return ResponseEntity.ok(update);
     }
 
     // Supprimer une marque
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteMarque(@PathVariable Long id) {
-        try {
-            Optional<Marque> existingMarque = marqueService.getMarque(id);
-            if (existingMarque.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Marque non trouvée.");
-            }
-            marqueService.deleteMarque(id);
-            return ResponseEntity.ok("Marque supprimée avec succès.");
-        } catch (Exception e) {
-            // Log the exception to understand the root cause
-            e.printStackTrace(); // Log it in the console or in your logging system
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la suppression de la marque.");
-        }
+    public ResponseEntity<Void> deleteMarque(@PathVariable Long id) {
+        marqueService.deleteMarque(id);
+        return ResponseEntity.noContent().build();
     }
 
     // Afficher une marque spécifique
     @GetMapping("/{id}")
     public ResponseEntity<Marque> getMarque(@PathVariable Long id) {
-        return marqueService.getMarque(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+        Optional<Marque> marque =marqueService.getMarque(id);
+        return marque.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 
     // Rechercher une marque par nom
@@ -83,19 +65,5 @@ public class MarqueController {
         return ResponseEntity.ok(marques);
     }
 
-    // Afficher les produits d'une marque spécifique
-    @GetMapping("/{id}/produits")
-    public ResponseEntity<List<Produit>> getProduitsByMarqueId(@PathVariable Long id) {
-        return marqueService.findProduitsByMarqueId(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
-    }
 
-    // Afficher les catégories des articles d'une marque spécifique
-    @GetMapping("/{id}/categories")
-    public ResponseEntity<List<Categorie>> getCategoriesByMarqueId(@PathVariable Long id) {
-        return marqueService.findCategoriesByMarqueId(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
-    }
 }

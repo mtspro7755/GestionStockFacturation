@@ -26,7 +26,7 @@ public class MarqueService {
         return marqueRepository.findById(id);
     }
 
-    // Ajouter ou mettre à jour une marque
+    // Ajouter ou une marque
     public Marque saveMarque(Marque marque) {
         return marqueRepository.save(marque);
     }
@@ -41,17 +41,11 @@ public class MarqueService {
         return marqueRepository.findByNomContainingIgnoreCase(nom);
     }
 
-    // Afficher les produits d'une marque spécifique
-    public Optional<List<Produit>> findProduitsByMarqueId(Long id) {
-        // Assurez-vous que vous avez une relation définie pour accéder aux produits de la marque
-        return marqueRepository.findById(id)
-                .map(Marque::getProduits); // Assume that Marque entity has a getProduits() method
+    //mettre à jour une marque
+    public Marque updateMarque(int id, Marque marque) {
+        marque.setId(id);
+        return marqueRepository.save(marque);
     }
 
-    // Afficher les catégories des articles d'une marque spécifique
-    public Optional<List<Categorie>> findCategoriesByMarqueId(Long id) {
-        // Assurez-vous que vous avez une relation définie pour accéder aux catégories des articles de la marque
-        return marqueRepository.findById(id)
-                .map(Marque::getCategories); // Assume that Marque entity has a getCategories() method
-    }
+
 }
