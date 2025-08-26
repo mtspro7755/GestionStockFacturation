@@ -1,6 +1,7 @@
 package sn.edu.ugb.ipsl.ing2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.edu.ugb.ipsl.ing2.entity.Employe;
 import sn.edu.ugb.ipsl.ing2.service.EmployeService;
@@ -29,17 +30,20 @@ public class EmployeController {
     }
 
     @PostMapping("/create")
-    public Employe saveEmploye(@RequestBody Employe employe){
-        return employeService.saveEmploye(employe);
+    public ResponseEntity<Employe> saveEmploye(@RequestBody Employe employe){
+        Employe saveEmploye=employeService.saveEmploye(employe);
+        return ResponseEntity.ok(saveEmploye);
     }
 
-    @PutMapping("/update")
-    public Employe updateEmploye(@RequestBody Employe employe){
-        return employeService.saveEmploye(employe);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Employe> updateEmploye(@PathVariable int id,@RequestBody Employe employe){
+        Employe updateEmploye=employeService.updateEmploye(id,employe);
+        return ResponseEntity.ok(updateEmploye);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteEmploye(@PathVariable Long id){
+    public ResponseEntity<Void> deleteEmploye(@PathVariable Long id){
         employeService.deleteEmploye(id);
+        return ResponseEntity.noContent().build();
     }
 }

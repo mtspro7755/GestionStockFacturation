@@ -1,6 +1,7 @@
 package sn.edu.ugb.ipsl.ing2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.edu.ugb.ipsl.ing2.entity.Client;
 import sn.edu.ugb.ipsl.ing2.service.ClientService;
@@ -31,13 +32,15 @@ public class ClientController {
 
 
     @PostMapping("/create")
-    public Client saveClient(@RequestBody Client client){
-        return clientService.saveClient(client);
+    public ResponseEntity<Client> saveClient(@RequestBody Client client){
+        Client createdClient=clientService.saveClient(client);
+        return ResponseEntity.ok(createdClient);
     }
 
-    @PutMapping("/update")
-    public Client updateClient(@RequestBody Client client){
-        return clientService.saveClient(client);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Client> updateClient(@PathVariable int id,@RequestBody Client client){
+        Client updatedClient=clientService.updateClient(id, client);
+        return ResponseEntity.ok(updatedClient);
     }
 
     @DeleteMapping("/delete/{id}")

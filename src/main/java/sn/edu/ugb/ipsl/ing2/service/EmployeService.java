@@ -30,4 +30,9 @@ public class EmployeService {
     public Employe saveEmploye(Employe employe) {
         return employeRepository.save(employe);
     }
+
+    public Employe updateEmploye(int id,Employe employe) {
+        employe.setId(id);
+        return employeRepository.save(employe);
+    }
 }

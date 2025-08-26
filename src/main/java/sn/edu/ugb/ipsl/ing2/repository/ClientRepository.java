@@ -5,6 +5,4 @@ import org.springframework.stereotype.Repository;
 import sn.edu.ugb.ipsl.ing2.entity.Client;
 
 @Repository
-public interface ClientRepository extends CrudRepository<Client, Long> {
-
-}
+public interface ClientRepository extends CrudRepository<Client, Long> {}

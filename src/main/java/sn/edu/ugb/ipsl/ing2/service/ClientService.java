@@ -30,4 +30,9 @@ public class ClientService {
     public Client saveClient(Client client) {
         return clientRepository.save(client);
     }
+
+    public Client updateClient(int id, Client client) {
+        client.setId(id);
+        return clientRepository.save(client);
+    }
 }
