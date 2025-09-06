@@ -29,4 +29,21 @@ public class StockService {
     public Stock saveStock(Stock stock){
         return stockRepository.save(stock);
     }
+
+    public Stock updateStock(Stock stock) {
+        Optional<Stock> existingStock = stockRepository.findById(stock.getId());
+
+        if (existingStock.isPresent()) {
+            // 2. S'il existe, on met à jour les champs nécessaires de l'entité existante.
+            Stock stockToUpdate = existingStock.get();
+            stockToUpdate.setQuantite(stock.getQuantite());
+            // Ajouter d'autres champs à mettre à jour ici...
+
+            // 3. On sauvegarde les modifications.
+            return stockRepository.save(stockToUpdate);
+        } else {
+            // 4. S'il n'existe pas, on retourne null.
+            return null;
+        }
+    }
 }

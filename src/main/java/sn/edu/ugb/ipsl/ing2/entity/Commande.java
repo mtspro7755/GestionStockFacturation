@@ -3,6 +3,8 @@ package sn.edu.ugb.ipsl.ing2.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Data
 @Table(name = "commande")
@@ -13,7 +15,7 @@ public class Commande {
     private Long id;
 
     @Column(nullable = false)
-    private int dateCommande;
+    private String dateCommande;
 
     @Column(nullable = false)
     private short status;
@@ -35,7 +37,7 @@ public class Commande {
     @JoinColumn(name = "vendeur_id")
     private Employe vendeur;
 
-    public Commande(Long id, int dateCommande, short status, String dateLivraison, String dateLivraisonVoulue, Client client, Magasin magasin, Employe vendeur) {
+    public Commande(Long id, String dateCommande, short status, String dateLivraison, String dateLivraisonVoulue, Client client, Magasin magasin, Employe vendeur) {
         this.id = id;
         this.dateCommande = dateCommande;
         this.status = status;

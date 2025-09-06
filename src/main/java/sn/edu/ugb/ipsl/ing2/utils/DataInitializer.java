@@ -70,10 +70,10 @@ public class DataInitializer implements CommandLineRunner {
         // Initialiser les données pour Magasin
         if (magasinRepository.count() == 0) {
             magasinRepository.saveAll(Arrays.asList(
-                    new Magasin(0, "Magasin A", "Adresse A", "10000", "Ville A", "Etat A", "123456789", "emailA@example.com"),
-                    new Magasin(0, "Magasin B", "Adresse B", "10001", "Ville B", "Etat B", "123456780", "emailB@example.com"),
-                    new Magasin(0, "Magasin C", "Adresse C", "10002", "Ville C", "Etat C", "123456781", "emailC@example.com"),
-                    new Magasin(0, "Magasin D", "Adresse D", "10003", "Ville D", "Etat D", "123456782", "emailD@example.com")
+                    new Magasin(0, "Magasin A", "Adresse A", "10000", "Ville A", "Actif", "123456789", "emailA@example.com"),
+                    new Magasin(0, "Magasin B", "Adresse B", "10001", "Ville B", "Actif", "123456780", "emailB@example.com"),
+                    new Magasin(0, "Magasin C", "Adresse C", "10002", "Ville C", "Inactif", "123456781", "emailC@example.com"),
+                    new Magasin(0, "Magasin D", "Adresse D", "10003", "Ville D", "Inactif", "123456782", "emailD@example.com")
             ));
         }
 
@@ -90,10 +90,10 @@ public class DataInitializer implements CommandLineRunner {
         // Initialiser les données pour Commande
         if (commandeRepository.count() == 0) {
             commandeRepository.saveAll(Arrays.asList(
-                    new Commande(0L, 20240801, (short) 1, "2024-08-10", "2024-08-12", clientRepository.findById(1L).orElse(null), magasinRepository.findById(1).orElse(null), employeRepository.findById(1L).orElse(null)),
-                    new Commande(0L, 20240802, (short) 2, "2024-08-11", "2024-08-13", clientRepository.findById(2L).orElse(null), magasinRepository.findById(2).orElse(null), employeRepository.findById(2L).orElse(null)),
-                    new Commande(0L, 20240803, (short) 1, "2024-08-12", "2024-08-14", clientRepository.findById(3L).orElse(null), magasinRepository.findById(3).orElse(null), employeRepository.findById(3L).orElse(null)),
-                    new Commande(0L, 20240804, (short) 2, "2024-08-13", "2024-08-15", clientRepository.findById(4L).orElse(null), magasinRepository.findById(4).orElse(null), employeRepository.findById(4L).orElse(null))
+                    new Commande(0L, "2024-08-02", (short) 1, "2024-08-10", "2024-08-12", clientRepository.findById(1L).orElse(null), magasinRepository.findById(1).orElse(null), employeRepository.findById(1L).orElse(null)),
+                    new Commande(0L, "2024-08-02", (short) 2, "2024-08-11", "2024-08-13", clientRepository.findById(2L).orElse(null), magasinRepository.findById(2).orElse(null), employeRepository.findById(2L).orElse(null)),
+                    new Commande(0L, "2024-08-02", (short) 1, "2024-08-12", "2024-08-14", clientRepository.findById(3L).orElse(null), magasinRepository.findById(3).orElse(null), employeRepository.findById(3L).orElse(null)),
+                    new Commande(0L, "2024-08-02", (short) 2, "2024-08-13", "2024-08-15", clientRepository.findById(4L).orElse(null), magasinRepository.findById(4).orElse(null), employeRepository.findById(4L).orElse(null))
             ));
         }
 

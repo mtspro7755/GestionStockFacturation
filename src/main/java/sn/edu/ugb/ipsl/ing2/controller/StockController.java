@@ -1,6 +1,7 @@
 package sn.edu.ugb.ipsl.ing2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.edu.ugb.ipsl.ing2.entity.Stock;
 import sn.edu.ugb.ipsl.ing2.entity.StockId;
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/stocks")
+@CrossOrigin(origins = "http://localhost:4200")  // autorise Angular
 public class StockController {
 
     @Autowired
@@ -33,9 +35,19 @@ public class StockController {
         return stockService.saveStock(stock);
     }
 
-    @PutMapping("/update")
-    public Stock updateStock(@RequestBody Stock stock){
-        return stockService.saveStock(stock);
+    @PutMapping("/stock/{magasinId}/{produitId}")
+    public ResponseEntity<Stock> updateStock(@PathVariable Integer magasinId, @PathVariable Integer produitId, @RequestBody Stock stock) {
+        // Crée l'objet StockId à partir des IDs de l'URL
+        StockId id = new StockId(magasinId, produitId);
+        stock.setId(id);
+
+        Stock updatedStock = stockService.updateStock(stock);
+
+        if (updatedStock != null) {
+            return ResponseEntity.ok(updatedStock);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/delete/{magasinId}/{produitId}")

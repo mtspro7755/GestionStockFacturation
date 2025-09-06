@@ -1,6 +1,7 @@
 package sn.edu.ugb.ipsl.ing2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.edu.ugb.ipsl.ing2.entity.ArticleCommande;
 import sn.edu.ugb.ipsl.ing2.service.ArticleCommandeService;
@@ -29,17 +30,22 @@ public class ArticleCommandeController {
     }
 
     @PostMapping("/create")
-    public ArticleCommande saveArticleCommande(@RequestBody ArticleCommande articleCommande){
-        return articleCommandeService.saveArticleCommande(articleCommande);
+    public ResponseEntity<ArticleCommande> saveArticleCommande(@RequestBody ArticleCommande articleCommande){
+        ArticleCommande savedArticleCommandearticleCommande=articleCommandeService.saveArticleCommande(articleCommande);
+        return ResponseEntity.ok().body(savedArticleCommandearticleCommande);
     }
 
-    @PutMapping("/update")
-    public ArticleCommande updateArticleCommande(@RequestBody ArticleCommande articleCommande){
-        return articleCommandeService.saveArticleCommande(articleCommande);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ArticleCommande> updateArticleCommande(@PathVariable int id,@RequestBody ArticleCommande articleCommande){
+        ArticleCommande updatedArticleCommande=articleCommandeService.updatedArticleCommande(id,articleCommande);
+        return ResponseEntity.ok().body(updatedArticleCommande);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteArticleCommande(@PathVariable Long id){
+    public ResponseEntity<Void> deleteArticleCommande(@PathVariable Long id){
         articleCommandeService.deleteArticleCommande(id);
+        return ResponseEntity.noContent().build();
     }
+
+
 }

@@ -30,4 +30,11 @@ public class ArticleCommandeService {
     public ArticleCommande saveArticleCommande(ArticleCommande articleCommande) {
         return articleCommandeRepository.save(articleCommande);
     }
+
+    public ArticleCommande updatedArticleCommande(int id,ArticleCommande articleCommande) {
+        articleCommande.setId(id);
+        return articleCommandeRepository.save(articleCommande);
+    }
+
+
 }

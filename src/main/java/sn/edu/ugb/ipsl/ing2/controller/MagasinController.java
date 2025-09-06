@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/magasins")
+@CrossOrigin(origins = "http://localhost:4200")  // autorise Angular
 public class MagasinController {
 
     @Autowired
