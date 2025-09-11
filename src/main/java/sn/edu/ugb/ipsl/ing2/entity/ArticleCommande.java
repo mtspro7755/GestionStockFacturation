@@ -12,16 +12,16 @@ public class ArticleCommande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int prixDepart;
     private int quantite;
     private int remiseDecimal;
 
     @ManyToOne
-    @JoinColumn(name = "produit_id", nullable = false)
+    @JoinColumn(name = "produit_id", nullable = true)
     private Produit produit;
 
     @ManyToOne
-    @JoinColumn(name = "commande_id", nullable = false)
+    @JoinColumn(name = "commande_id", nullable = true)
     private Commande commande;
 }
